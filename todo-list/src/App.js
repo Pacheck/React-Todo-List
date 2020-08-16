@@ -47,11 +47,12 @@ const App = () => {
       if (item.key === key) {
         item.text = text;
       }
+      return item;
     });
 
     console.log(ITEMS);
-    setItems(ITEMS);
-    setCurrentItem({ text: '', key: '' });
+    setItems([...ITEMS]);
+    // setCurrentItem({ text: '', key: '' });
   }
 
   return (
