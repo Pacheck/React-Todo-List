@@ -45,7 +45,7 @@ const App = () => {
     const ITEMS = items;
     ITEMS.map((item) => {
       if (item.key === key) {
-        return (item.text = text);
+        item.text = text;
       }
     });
     console.log(ITEMS);
