@@ -48,6 +48,7 @@ const App = () => {
         item.text = text;
       }
     });
+
     console.log(ITEMS);
     setItems(ITEMS);
     setCurrentItem({ text: '', key: '' });

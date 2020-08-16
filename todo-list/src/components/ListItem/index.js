@@ -1,6 +1,7 @@
 import React from 'react';
 import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import FlipMove from 'react-flip-move';
 
 const ListItems = ({ stateItems, deleteItemHandler, setUpdate }) => {
   const listItems = stateItems.map((item) => {
@@ -29,7 +30,13 @@ const ListItems = ({ stateItems, deleteItemHandler, setUpdate }) => {
       </div>
     );
   });
-  return <div>{listItems}</div>;
+  return (
+    <div>
+      <FlipMove duration={250} easing={'ease-in-out'}>
+        {listItems}
+      </FlipMove>
+    </div>
+  );
 };
 
 export default ListItems;
