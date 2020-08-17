@@ -4,21 +4,23 @@ import './App.css';
 import ListItem from './components/ListItem';
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 const App = () => {
-  library.add(faTrash);
+  library.add(faTrash, faEdit, faCheck);
 
   const [items, setItems] = useState([]);
   const [currentItem, setCurrentItem] = useState({
     text: '',
     key: '',
+    notEditing: true,
   });
 
   function handleInput(e) {
     setCurrentItem({
       text: e.target.value,
       key: Date.now(),
+      notEditing: true,
     });
   }
 
@@ -32,6 +34,7 @@ const App = () => {
       setCurrentItem({
         text: '',
         key: '',
+        notEditing: true,
       });
     }
   }
@@ -55,6 +58,19 @@ const App = () => {
     // setCurrentItem({ text: '', key: '' });
   }
 
+  function editingTaskHandler(bool, key) {
+    const oldMappedItems = items;
+
+    oldMappedItems.map((item) => {
+      if (item.key === key) {
+        item.notEditing = bool;
+      }
+      return item;
+    });
+
+    setItems([...oldMappedItems]);
+  }
+
   return (
     <div className="App">
       <header>
@@ -73,6 +89,7 @@ const App = () => {
         stateItems={items}
         deleteItemHandler={deleteItemHandler}
         setUpdate={setUpdate}
+        editingTaskHandler={editingTaskHandler}
       />
     </div>
   );
