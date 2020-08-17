@@ -14,7 +14,6 @@ const App = () => {
     text: '',
     key: '',
     notEditing: true,
-    activeBlur: false,
   });
 
   useEffect(() => {
@@ -26,7 +25,6 @@ const App = () => {
       text: e.target.value,
       key: Date.now(),
       notEditing: true,
-      activeBlur: false,
     });
   }
 
@@ -41,7 +39,6 @@ const App = () => {
         text: '',
         key: '',
         notEditing: true,
-        activeBlur: false,
       });
     }
   }
@@ -64,13 +61,12 @@ const App = () => {
     setItems([...ITEMS]);
   }
 
-  function editingTaskHandler(bool, key, blur) {
+  function editingTaskHandler(bool, key) {
     const oldMappedItems = items;
 
     oldMappedItems.map((item) => {
       if (item.key === key) {
         item.notEditing = bool;
-        item.activeBlur = blur;
       }
       return item;
     });
