@@ -11,6 +11,12 @@
   /* justify-content: space-between; */
 }
 
+.list:hover {
+  background-color: #67157ade;
+  transition: ease-out 0.2s;
+  /* cursor: text; */
+}
+
 .list p {
   align-items: center;
   padding: 10px;
@@ -20,7 +26,7 @@
 }
 
 .list p span {
-  padding: 10px;
+  /* padding: 10px; */
   cursor: pointer;
 }
 

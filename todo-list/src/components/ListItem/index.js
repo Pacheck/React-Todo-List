@@ -3,20 +3,40 @@ import './index.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import FlipMove from 'react-flip-move';
 
-const ListItems = ({ stateItems, deleteItemHandler, setUpdate }) => {
+const ListItems = ({
+  stateItems,
+  deleteItemHandler,
+  setUpdate,
+  editingTaskHandler,
+}) => {
   const listItems = stateItems.map((item) => {
     return (
       <div className="list" key={item.key}>
         <p>
-          {/* {item.text} */}
           <input
             type="text"
             id={item.key}
             value={item.text}
+            disabled={item.notEditing}
             onChange={(e) => {
               setUpdate(e.target.value, item.key);
             }}
+            onFocusCapture={(e) => {
+              // item.notEditing ? this.focus() : console.log('piru');
+            }}
+            onBlur={function () {
+              console.log('LOGADO');
+            }}
           />
+          <span>
+            <FontAwesomeIcon
+              className="faicons"
+              icon={item.notEditing ? 'edit' : 'check'}
+              onClick={(e) => {
+                editingTaskHandler(!item.notEditing, item.key);
+              }}
+            />
+          </span>
           <span>
             <FontAwesomeIcon
               className="faicons"
