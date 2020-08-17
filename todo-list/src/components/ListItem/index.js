@@ -22,7 +22,7 @@ const ListItems = ({
               setUpdate(e.target.value, item.key);
             }}
             onBlur={() => {
-              editingTaskHandler(!item.notEditing, item.key);
+              editingTaskHandler(!item.notEditing, item.key, true);
             }}
           />
           <span>
@@ -30,7 +30,11 @@ const ListItems = ({
               className="faicons"
               icon={item.notEditing ? 'edit' : 'check'}
               onClick={(e) => {
-                editingTaskHandler(!item.notEditing, item.key);
+                if (item.activeBlur) {
+                  editingTaskHandler(item.notEditing, item.key, false);
+                } else {
+                  editingTaskHandler(!item.notEditing, item.key, true);
+                }
               }}
             />
           </span>
