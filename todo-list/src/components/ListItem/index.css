@@ -32,6 +32,11 @@
 
 .faicons {
   margin: 0 5px;
+  color: #eee4ee;
+}
+
+.faicons:hover {
+  color: #dd6cdd;
 }
 
 .list p input {
