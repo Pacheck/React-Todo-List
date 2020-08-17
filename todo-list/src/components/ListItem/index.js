@@ -21,11 +21,8 @@ const ListItems = ({
             onChange={(e) => {
               setUpdate(e.target.value, item.key);
             }}
-            onFocusCapture={(e) => {
-              // item.notEditing ? this.focus() : console.log('piru');
-            }}
-            onBlur={function () {
-              console.log('LOGADO');
+            onBlur={() => {
+              editingTaskHandler(!item.notEditing, item.key);
             }}
           />
           <span>
