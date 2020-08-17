@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import ListItem from './components/ListItem';
@@ -14,13 +14,19 @@ const App = () => {
     text: '',
     key: '',
     notEditing: true,
+    activeBlur: false,
   });
+
+  useEffect(() => {
+    localStorage.setItem('myStoragedItems', items);
+  }, [items]);
 
   function handleInput(e) {
     setCurrentItem({
       text: e.target.value,
       key: Date.now(),
       notEditing: true,
+      activeBlur: false,
     });
   }
 
@@ -35,6 +41,7 @@ const App = () => {
         text: '',
         key: '',
         notEditing: true,
+        activeBlur: false,
       });
     }
   }
@@ -55,15 +62,15 @@ const App = () => {
 
     console.log(ITEMS);
     setItems([...ITEMS]);
-    // setCurrentItem({ text: '', key: '' });
   }
 
-  function editingTaskHandler(bool, key) {
+  function editingTaskHandler(bool, key, blur) {
     const oldMappedItems = items;
 
     oldMappedItems.map((item) => {
       if (item.key === key) {
         item.notEditing = bool;
+        item.activeBlur = blur;
       }
       return item;
     });
